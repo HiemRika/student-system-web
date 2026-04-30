@@ -1,1 +1,449 @@
-git 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lambo Supercar</title>
+  <style>
+    :root {
+      --bg: #07070a;
+      --bg2: #0f1016;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.10);
+      --text: #f5f7ff;
+      --muted: rgba(245,247,255,0.72);
+      --accent: #c6ff00;
+      --accent2: #ffd400;
+      --line: rgba(255,255,255,0.12);
+      --shadow: 0 30px 80px rgba(0,0,0,0.55);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(198,255,0,0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(255,212,0,0.12), transparent 30%),
+        linear-gradient(180deg, #050507 0%, #0b0c12 55%, #050507 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mix-blend-mode: overlay;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(5,5,7,0.55);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #0a0b0f;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 30px rgba(198,255,0,0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 24px 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 86px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .eyebrow span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(198,255,0,0.8);
+    }
+
+    h1 {
+      margin: 20px 0 16px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    h1 .accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 620px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #071009;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 18px 40px rgba(198,255,0,0.2);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      border-color: var(--line);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .car-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 680px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198,255,0,0.28) 0%, rgba(198,255,0,0.12) 30%, transparent 68%);
+      filter: blur(20px);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .car {
+      position: relative;
+      width: min(860px, 100%);
+      filter: drop-shadow(0 35px 55px rgba(0,0,0,0.6));
+      transform: translateY(20px);
+    }
+
+    .car svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .panel {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(198,255,0,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(198,255,0,0.25);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(245,247,255,0.55);
+      padding: 8px 24px 34px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .car-stage { min-height: 520px; }
+      .panel { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      h1 { font-size: clamp(42px, 13vw, 72px); }
+      .lead { font-size: 16px; }
+      .btn { width: 100%; }
+      .actions { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-mark">L</div>
+        <div>Super Lambo</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#design">Design</a>
+        <a href="#specs">Specs</a>
+        <a href="#performance">Performance</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> Hypercar Experience</div>
+        <h1>Feel the <span class="accent">Lambo</span> energy</h1>
+        <p class="lead">
+          A bold supercar landing page with neon glow, glassmorphism panels, and a premium racing vibe.
+          Built in one clean HTML file for a sleek modern look.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#specs">Explore Now</a>
+          <a class="btn btn-secondary" href="#design">View Design</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>2.9s</strong>
+            <span>0–100 km/h</span>
+          </div>
+          <div class="stat">
+            <strong>350+ km/h</strong>
+            <span>Top Speed</span>
+          </div>
+          <div class="stat">
+            <strong>V10</strong>
+            <span>Pure Power</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-stage">
+        <div class="glow"></div>
+        <div class="car" aria-label="Stylized supercar illustration">
+          <svg viewBox="0 0 900 430" role="img">
+            <defs>
+              <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d7ff2f" />
+                <stop offset="45%" stop-color="#7de600" />
+                <stop offset="100%" stop-color="#223300" />
+              </linearGradient>
+              <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)" />
+                <stop offset="100%" stop-color="rgba(130,180,255,0.15)" />
+              </linearGradient>
+            </defs>
+
+            <ellipse cx="451" cy="342" rx="255" ry="30" fill="rgba(0,0,0,0.45)" />
+
+            <path d="M128 270 C156 230, 214 206, 280 200 L385 182 C450 145, 534 118, 630 126 L710 134 C764 140, 810 172, 840 214 L862 244 C867 250, 862 260, 853 264 L813 264 C795 224, 756 200, 704 200 C652 200, 612 227, 595 264 L317 264 C298 224, 261 200, 212 200 C166 200, 131 224, 112 260 L106 264 C98 264, 103 276, 111 278 L128 270 Z" fill="url(#bodyGrad)" opacity="0.85" />
+
+            <path d="M173 205 L263 205 C300 202, 330 187, 355 160 L403 120 C430 96, 469 84, 506 86 L610 93 C657 96, 697 114, 725 145 L759 183 L632 189 C589 190, 543 190, 501 188 L367 181 C314 180, 256 188, 173 205 Z" fill="url(#bodyGrad)" />
+
+            <path d="M360 180 L510 186 C549 188, 592 187, 635 184 L676 182 L644 144 C619 116, 587 101, 548 98 L495 94 C462 92, 433 102, 410 123 L360 180 Z" fill="url(#glassGrad)" opacity="0.72" />
+
+            <path d="M166 263 L212 263 C225 227, 259 201, 300 201 C343 201, 377 228, 390 263 L592 263 C604 228, 639 201, 681 201 C723 201, 757 227, 770 263 L802 263 C817 263, 824 246, 814 236 L785 204 C760 176, 722 158, 681 155 L551 146 C481 145, 423 149, 359 163 L286 179 C228 192, 182 224, 166 263 Z" fill="rgba(255,255,255,0.08)" />
+
+            <path d="M150 264 L825 264" stroke="rgba(255,255,255,0.30)" stroke-width="3" />
+            <path d="M154 255 C206 219, 266 204, 321 204" stroke="rgba(255,255,255,0.18)" stroke-width="5" fill="none" />
+            <path d="M584 189 C644 188, 699 198, 761 236" stroke="rgba(255,255,255,0.18)" stroke-width="5" fill="none" />
+
+            <circle cx="262" cy="267" r="68" fill="#0b0b0f" stroke="rgba(255,255,255,0.10)" stroke-width="6" />
+            <circle cx="262" cy="267" r="43" fill="none" stroke="rgba(198,255,0,0.9)" stroke-width="9" />
+            <circle cx="262" cy="267" r="16" fill="#b8ff28" />
+
+            <circle cx="672" cy="267" r="68" fill="#0b0b0f" stroke="rgba(255,255,255,0.10)" stroke-width="6" />
+            <circle cx="672" cy="267" r="43" fill="none" stroke="rgba(198,255,0,0.9)" stroke-width="9" />
+            <circle cx="672" cy="267" r="16" fill="#b8ff28" />
+
+            <path d="M200 264 L305 264" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round" />
+            <path d="M610 264 L740 264" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round" />
+
+            <path d="M168 206 C177 188, 204 171, 234 167" stroke="rgba(255,255,255,0.12)" stroke-width="5" fill="none" />
+            <path d="M742 180 C776 194, 803 214, 820 237" stroke="rgba(255,255,255,0.12)" stroke-width="5" fill="none" />
+
+            <path d="M118 268 C142 271, 163 282, 176 300" stroke="rgba(198,255,0,0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
+            <path d="M822 268 C793 271, 770 282, 756 300" stroke="rgba(198,255,0,0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="design">
+      <div class="card">
+        <div class="badge">Design</div>
+        <h3>Sharp Aerodynamics</h3>
+        <p>Low stance, aggressive lines, and luminous accents create a premium supercar atmosphere.</p>
+      </div>
+      <div class="card" id="specs">
+        <div class="badge">Specs</div>
+        <h3>Performance Dashboard</h3>
+        <p>Key numbers are displayed in bold cards with a futuristic glass style and strong contrast.</p>
+      </div>
+      <div class="card" id="performance">
+        <div class="badge">Performance</div>
+        <h3>Luxury Meets Speed</h3>
+        <p>Designed to feel fast, clean, and cinematic with neon glow effects and smooth spacing.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Super Lambo concept page — single-file HTML
+  </footer>
+</body>
+</html>
