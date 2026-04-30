@@ -1,0 +1,85 @@
+<!-- SPECS SECTION -->
+<section class="specs">
+  <h2>Car <span>Specifications</span></h2>
+
+  <div class="specs-container">
+
+    <div class="spec-box">
+      <h3>Engine</h3>
+      <p>5.2L V10 Naturally Aspirated</p>
+    </div>
+
+    <div class="spec-box">
+      <h3>Horsepower</h3>
+      <p>630 HP</p>
+    </div>
+
+    <div class="spec-box">
+      <h3>Acceleration</h3>
+      <p>0–100 km/h in 2.9s</p>
+    </div>
+
+    <div class="spec-box">
+      <h3>Top Speed</h3>
+      <p>350+ km/h</p>
+    </div>
+
+    <div class="spec-box">
+      <h3>Transmission</h3>
+      <p>7-Speed Dual Clutch</p>
+    </div>
+
+    <div class="spec-box">
+      <h3>Drive Type</h3>
+      <p>All-Wheel Drive</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.specs {
+  padding: 60px 20px;
+  text-align: center;
+  background: #0b0b0b;
+}
+
+.specs h2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.specs h2 span {
+  color: #c6ff00;
+}
+
+.specs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.spec-box {
+  background: #111;
+  padding: 25px;
+  width: 250px;
+  border-radius: 15px;
+  transition: 0.3s;
+  border: 1px solid #222;
+}
+
+.spec-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(198,255,0,0.3);
+}
+
+.spec-box h3 {
+  color: #c6ff00;
+  margin-bottom: 10px;
+}
+
+.spec-box p {
+  color: #aaa;
+}
+</style>
