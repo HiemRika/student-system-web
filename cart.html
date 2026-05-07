@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -21,5 +22,132 @@
     </tr>
     <tr></tr>
     </table>
+=======
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: #333;
+      color: white;
+    }
+
+    img {
+      width: 70px;
+      border-radius: 8px;
+    }
+
+    input {
+      width: 50px;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .remove {
+      background: red;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .checkout {
+      float: right;
+      margin-top: 10px;
+      background: green;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .checkout:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Shopping Cart</h1>
+
+    <table>
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+
+      <tr>
+        <td><img src="https://via.placeholder.com/70" alt="Product"></td>
+        <td>T-Shirt</td>
+        <td>$10</td>
+        <td><input type="number" value="1" min="1"></td>
+        <td>$10</td>
+        <td><button class="remove">Remove</button></td>
+      </tr>
+
+      <tr>
+        <td><img src="https://via.placeholder.com/70" alt="Product"></td>
+        <td>Shoes</td>
+        <td>$25</td>
+        <td><input type="number" value="2" min="1"></td>
+        <td>$50</td>
+        <td><button class="remove">Remove</button></td>
+      </tr>
+    </table>
+
+    <div class="total">
+      Grand Total: $60
+    </div>
+
+    <button class="checkout">Checkout</button>
+  </div>
+
+>>>>>>> 1a96ad5a7c94a29436e672a05f61b575bf97d35a
 </body>
 </html>
